@@ -1,0 +1,34 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "startApp": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ailey25/Simple-Front-End-Application.git"
+  },
+  "author": "Ailey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ailey25/Simple-Front-End-Application/issues"
+  },
+  "homepage": "https://github.com/Ailey25/Simple-Front-End-Application#readme",
+  "dependencies": {
+    "@types/react": "^16.4.7",
+    "@types/react-dom": "^16.0.6",
+    "babel": "^6.23.0",
+    "jsx": "^0.9.89",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "ts-loader": "^4.4.2",
+    "typescript": "^3.0.1",
+    "webpack": "^4.16.4"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.1.0"
+  }
+}
