@@ -16,14 +16,14 @@ class PhraseList extends React.Component<PhraseListProps, PhraseListState> {
   constructor(props: PhraseListProps) {
     super(props);
 
-    this.arrayToList = this.arrayToList.bind(this);
+    this.listItems = this.listItems.bind(this);
   }
 
   // Converts array items to <li> items
-  private arrayToList() {
-    const listItems = this.props.phraseArray.map((phrase: string, index: number) => {
+  private listItems() {
+    const items = this.props.phraseArray.map((phrase: string, index: number) => {
       return(
-        <li>
+        <li key={index + 1}>
           <span>
             <text>{phrase}</text>
             <button
@@ -33,7 +33,7 @@ class PhraseList extends React.Component<PhraseListProps, PhraseListState> {
         </li>
       );
     });
-    return (<li>{listItems}</li>);
+    return items;
   }
 
   public render() {
@@ -43,9 +43,9 @@ class PhraseList extends React.Component<PhraseListProps, PhraseListState> {
       );
     } else {
       return (
-        <ul>
-          {this.arrayToList()}
-        </ul>
+        <ol>
+          {this.listItems()}
+        </ol>
       );
     }
   }

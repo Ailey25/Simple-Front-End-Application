@@ -34,6 +34,9 @@ class AddPhraseModal extends React.Component<AddPhraseModalProps, AddPhraseState
   private handleSubmit(event: React.FormEvent): void {
     event.preventDefault();
     this.props.handleAddPhrase(this.state.phrase);
+
+    // Clear modal state when it closes
+    this.setState({phrase: ''})
     this.props.closeModal(event);
   }
 
