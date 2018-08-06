@@ -1,6 +1,6 @@
 var path = require("path");
 var config = {
-  entry: ["./frontend.tsx", "./modal.tsx"],
+  entry: ["./frontend.tsx", "./modal.tsx", "./modal.css"],
   output: {
     path: path.resolve(__dirname, "build"),
     filename: "[name].js",
@@ -14,6 +14,11 @@ var config = {
       {
         test: /\.tsx?$/,
         loader: ["ts-loader"],
+        exclude: /node_modules/
+      },
+      {
+        test: /\.css?$/,
+        loader: ["css-loader"],
         exclude: /node_modules/
       }
     ]
