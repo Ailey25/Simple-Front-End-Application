@@ -1,6 +1,6 @@
 var path = require("path");
 var config = {
-  entry: ["./frontend.tsx", "./modal.tsx", "./modal.css"],
+  entry: ["./frontend.tsx", "./addPhraseModal.tsx", "./phraseList.tsx", "./modal.css"],
   output: {
     path: path.resolve(__dirname, "build"),
     filename: "[name].js",

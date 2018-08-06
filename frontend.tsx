@@ -1,58 +1,65 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Modal } from './modal';
+import { AddPhraseModal } from './addPhraseModal';
+import { PhraseList } from './phraseList';
 
 // Interfaces
-interface AddViewButtonProps {
+interface PhraseStorageProps {
 
 }
 
-interface AddViewButtonState {
+interface PhraseStorageState {
   modalIsOpen: boolean;
+  phrases: Array<string>;
 }
 
-// AddViewButton that controls Modal
-class AddViewButton extends React.Component <AddViewButtonProps, AddViewButtonState> {
-  constructor(props: AddViewButtonProps) {
+// PhraseStorage that controls AddPhraseModal
+class PhraseStorage extends React.Component <PhraseStorageProps, PhraseStorageState> {
+  constructor(props: PhraseStorageProps) {
     super(props);
 
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
+      phrases: [],
     };
 
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.addPhrase = this.addPhrase.bind(this);
+    this.handleAddPhrase = this.handleAddPhrase.bind(this);
   }
 
-  openModal(event: React.MouseEvent): void {
+  private openModal(event: React.MouseEvent): void {
     this.setState({modalIsOpen: true});
   }
 
-  closeModal(event: React.MouseEvent): void {
+  private closeModal(event: React.MouseEvent | React.FormEvent): void {
     this.setState({modalIsOpen: false});
   }
 
-  addPhrase(): string {
-
-    return 'test';
+  // AddPhraseModal passes its phrase as its state
+  protected handleAddPhrase(phrase: string): void {
+    this.setState((prevState) => ({
+      phrases: [...prevState.phrases, phrase],
+    }));
   }
 
-  render() {
+  public render() {
     return (
-      <div id="add-view">
-       <button id="add-view-button" onClick={this.openModal}>Add View</button>
-       <Modal
-         isOpen={this.state.modalIsOpen}
-         closeModal={this.closeModal}
-         addPhrase={this.addPhrase} />
-         <input value={this.addPhrase()}></input>
-      </div>
+      <section>
+        <div id="add-view">
+         <button id="add-view-button" onClick={this.openModal}>Add View</button>
+         <AddPhraseModal
+           isOpen={this.state.modalIsOpen}
+           closeModal={this.closeModal}
+           handleAddPhrase={this.handleAddPhrase} />
+        </div>
+        <PhraseList phraseArray={this.state.phrases} />
+      </section>
     );
   }
 }
 
 ReactDOM.render(
-  <AddViewButton />,
+  <PhraseStorage />,
   document.getElementById('list-view'),
 );
