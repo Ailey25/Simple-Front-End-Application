@@ -6,11 +6,10 @@ export { PhraseList };
 // Props and state
 interface PhraseListProps {
   phraseArray: Array<string>;
+  handleDeletePhrase: ((event: React.FormEvent) => void);
 }
 
-interface PhraseListState {
-
-}
+interface PhraseListState {}
 
 // PhraseList that displays the phrases in array (passed from parent)
 class PhraseList extends React.Component<PhraseListProps, PhraseListState> {
@@ -22,12 +21,14 @@ class PhraseList extends React.Component<PhraseListProps, PhraseListState> {
 
   // Converts array items to <li> items
   private arrayToList() {
-    const listItems = this.props.phraseArray.map((phrase: string) => {
+    const listItems = this.props.phraseArray.map((phrase: string, index: number) => {
       return(
         <li>
           <span>
             <text>{phrase}</text>
-            <button>x</button>
+            <button
+              value={index}
+              onClick={this.props.handleDeletePhrase}>x</button>
           </span>
         </li>
       );
